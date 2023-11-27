@@ -1,10 +1,11 @@
 exports.createProduct = (req, res, next) => {
+    const { name, price } = req.body;
     res.json({
         message: "create product successfully",
         data: {
             id: 3,
-            name: "vanta",
-            price: 8000
+            name: name,
+            price: price
         }
     })
     next()
