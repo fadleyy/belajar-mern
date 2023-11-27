@@ -1,19 +1,15 @@
 const express = require('express');
 
 const app = express();
-const router = express.Router();
+const routerProducts = require('./src/routes/products.js')
 
-router.get('/author', (req, res) => {
-    res.json({
-        name: "fadli",
-        email: "fadli@gaga.go"
-    })
-    console.log({
-        reqUrl: req.originalUrl,
-        reqMethod: req.method
-    })
-})
+app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    next()
+});
 
-app.use('/', router)
+app.use('/v1/costumer', routerProducts)
 
 app.listen(4000)
